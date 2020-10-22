@@ -1,0 +1,526 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+	<meta charset="utf-8">
+
+	<title>AD137 - Estadística</title>
+
+	<meta name="description" content="stat-slides">
+	<meta name="author" content="Julio César Ramírez-Pacheco">
+
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+	<link rel="stylesheet" href="css/reveal.css">
+	<link rel="stylesheet" href="css/theme/solarized.css" id="theme">
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+
+	<!-- Theme used for syntax highlighting of code -->
+	<link rel="stylesheet" href="lib/css/zenburn.css">
+	<link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500&family=Kaushan+Script&display=swap" rel="stylesheet">
+
+	<!-- Printing and PDF exports -->
+	<script>
+		var link = document.createElement( 'link' );
+		link.rel = 'stylesheet';
+		link.type = 'text/css';
+		link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+		document.getElementsByTagName( 'head' )[0].appendChild( link );
+	</script>
+	<link rel="stylesheet" href="css/user.css">
+	<!--[if lt IE 9]>
+	<script src="lib/js/html5shiv.js"></script>
+	<![endif]-->
+</head>
+
+
+<div class="myLogo" style="background: url(img/uqroo.png);
+										position: absolute;
+										bottom: 80px;
+										right: 20px;
+										width: 240px;
+										height: 120px;
+										background-size: cover;">
+</div>		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+				<section>
+					<h1 style="font-family: 'Kaushan Script', cursive;"><span style="text-transform: capitalize;"><span>Estadística</span></h1>
+					<h3 style="font-family: 'Kaushan Script', cursive; font-size: 50px; text-transform: capitalize;">Variables aleatorias</h3>
+					<p style="font-family: 'Dancing Script', cursive;">
+						<small>Dr. Julio César Ramírez-Pacheco </small>
+					</p>
+					<p style="font-size:1.5rem">Presentación en: <a style="color:lightblue;" href="https://monoxide2000.github.io/slidesSTAT_02">https://monoxide2000.github.io/slidesSTAT_02</a></p>
+
+				</section>
+
+				<section data-transition="zoom">
+					<h2>Contenido</h2>
+					<ul>
+						<li class="fragment">Definición de una variable aleatoria.</li>
+						<li class="fragment">Funciones de masa de probabilidad (PMF), $p_X(x)$.</li>
+						<li class="fragment">Funciones de distribución, $F_X(x)$.</li>
+						<li class="fragment">Funciones de densidad de probabilidad (PDF), $f_X(x)$.</li>
+						<li class="fragment">¿Preguntas?.</li>
+					</ul>
+				</section>
+
+				<section data-transition="zoom">
+					  <h2>Variables aleatorias</h2>
+			      <ul>
+			      	<li class="fragment">Primero, una variable aleatoria no es un variable sino una función.</li>
+			      	<li class="fragment">Se define sobre un espacio de probabilidad $(\Omega, \mathcal{F}, P)$.</li>
+			      	<li class="fragment">Es decir, una variable aleatoria $X$ es una función sobre $\Omega$ hacía los números reales $\mathbb{R}$.</li>
+			      </ul>
+				</section>
+
+				<section data-transition="zoom">
+				      <h2>Variable aleatoria</h2>
+							<div class="fragment">
+										<div style="font-family: 'Pacifico';" class="def-block">
+										Definición
+										</div>
+										<div class="def-block-eq">
+										<p style="padding:0; margin:5px;">
+											Una variable aleatoria $X$, en un espacio de probabilidad $(\Omega, \mathcal{F},P)$, es un mapeo de $\Omega$ a
+											$\mathbb{R}$, es decir, $X:\Omega \to \mathbb{R}$
+											<br><br>
+											$\Omega$ es el dominio de la variable aleatoria y $\mathbb{R}$ su rango.
+									</div>
+						  </div>
+					</section>
+
+					<section data-transition="zoom">
+					      <h2>Variable aleatoria</h2>
+								<img src="img/randomvariable.png" alt="Random variable concept" style="width:60%;">
+
+						</section>
+
+				<section data-transition="zoom">
+					<h2>Variables aleatorias</h2>
+					<ul>
+						<li class="fragment">Dependiendo de los valores del rango, la variables aleatorias pueden clasificarse como; discretas, continuas y mixtas</li>
+						<li class="fragment">Usualmente, las variables aleatorias se describen con mayúsculas como $X,Y,Z, W, V$, etc.</li>
+						<li class="fragment">Lo valores de una variable aleatoria se nombran con letras minúsculas, e.g., $x,y,z,w,v$.</li>
+					</ul>
+				</section>
+
+				<section data-transition="zoom">
+					<h2>Variables aleatorias</h2>
+          <h3 style="text-transform: capitalize; text-align: left;">Ejemplos:</h3>
+					<ul>
+						<li class="fragment">El experimento consiste en tirar un par de dados. Se define la variable aleatora $X$ como la suma de valores que aperecen en los dados.</li>
+						<li class="fragment">Se tira una moneda al aire. Se define la variable aleatoria como:
+							$$
+							X = \begin{cases}
+							10 & \mbox{aparece aguila}\\
+							-10 & \mbox{si aparece sol}
+							\end{cases}
+							$$
+						</li>
+					</ul>
+				</section>
+
+				<section data-transition="zoom">
+					<h2>Variables aleatorias</h2>
+          <h3 style="text-transform: capitalize; text-align: left;">Condiciones de existencia:</h3>
+					<p style="text-align: left;">Para que $X$ sea considerada una variable aleatoria se tiene que cumplir que:</p>
+					<ul>
+						<li class="fragment">El conjunto $\{X \le x\}$, es un evento.</li>
+						<li class="fragment">La probabilidades de $\{X=+\infty\}$ y $\{X=-\infty\}$ son:<br>
+						$$P(X=+\infty) = P(X=-\infty) = 0$$</li>
+					</ul>
+				</section>
+
+
+
+				<section data-transition="zoom">
+					<h2>Variables aleatorias</h2>
+          <h3 style="text-align: left;">CDF, PDF y PMF</h3>
+					<p style="text-align: left;">Las variables aleatorias quedan especificadas por:</p>
+					<ul>
+						<li class="fragment">La función de distribución acumulativa (CDF).</li>
+						<li class="fragment">Si $X$ es continua, por la función de densidad de probabilidad (PDF).</li>
+						<li class="fragment">Si $X$ es discreta, por la función de masa de probabilidad (PMF).</li>
+					</ul>
+				</section>
+
+				<section data-transition="zoom">
+					<h2>Función de distribución acumulativa</h2>
+					<div class="fragment">
+								<div style="font-family: 'Pacifico';" class="def-block">
+								Definición
+								</div>
+								<div class="def-block-eq">
+								<p style="padding:0; margin:5px;">
+									La función de distribución de una variable aleatoria $X$ es la función definida como:
+									$$
+									F_X(x) = P\left\{ X \le x\right\},
+									$$
+									<br>
+									definida para cualquier número $x$ de $-\infty$ a $+\infty$.
+							</div>
+					</div>
+				</section>
+
+				<section data-transition="zoom">
+					<h2>Función de distribución acumulativa</h2>
+					<p style="text-align: left;">Propiedades de la CDF:</p>
+					<ul>
+						<li class="fragment">$0 \le F_X(x) \le 1$</li>
+						<li class="fragment">$F_X(-\infty) =0 $ y $ F_X(+\infty)=1$</li>
+						<li class="fragment">Si $x_1 < x_2$ entonces $F_X(x_1) \le F_X(x_2)$</li>
+						<li class="fragment">$P(a < X \le b) = F_X(b) -F_X(a) \;$  $a< b$</li>
+						<li class="fragment">$P(X>a) = 1-F_X(a)$</li>
+					</ul>
+				</section>
+
+
+				<section data-transition="zoom", data-background-color="#edf6f9">
+					<h2>CDF: Ejemplos</h2>
+					<p style ="text-align: left; font-size:0.8em;"> Sea $X$ una variable aleatoria con distribución:
+					$$
+					F_X(x) = \begin{cases}
+					0 & x < -1\\
+					1/4 & -1 \le x < 1\\
+					1/2 & 1 \le x < 3\\
+					3/4 & 3 \le x < 5\\
+					1 & x \ge 5
+					\end{cases}
+					$$
+					Calcular $P(-1 < X \le 1.5)$ y $P(X\ge 1)$ </p>
+					<p class="fragment" style ="text-align: left; color:green; font-size:0.7em;"><span style="color: blue;">Solución:</span> Recordemos que; $P(a < X\le b) = F_X(b)-F_X(a)$,
+					por lo tanto:
+					$$
+					P(-1 < X \le 1.5) =  F_X(1.5)- F_X(-1) = 1/2- 1/4= 1/4
+					$$</p>
+					<p class="fragment" style ="text-align: left; color:green; font-size:0.7em;"><span style="color: blue;">Solución:</span> Recordemos que; $P(X\ge b) = 1-F_x(b)+P(X=b)$,
+					por lo tanto:
+					$$
+					P(X \le 1) = 1-F_X(1)+P(X=1) = 1-1/2+1/4 = 3/4
+					$$</p>
+				</section>
+
+				<section data-transition="zoom", data-background-color="#edf6f9">
+					<h2>CDF: Ejemplos</h2>
+					<p style ="text-align: left; font-size:0.8em;"> Sea $X$ una variable aleatoria con $F_X(x)$:
+					$$
+					F_X(x) = \begin{cases}
+					0 & x < 1\\
+					2\left(1- \frac{1}{x}\right) & 1 \le x < 2\\
+					1 & x \ge 2
+					\end{cases}
+				  $$
+				  Calcular $P(-1 < X \le 1.5)$ </p>
+					<p class="fragment" style ="text-align: left; color:green; font-size:0.8em"><span style="color: blue;">Solución:</span> Recordemos que $P(a < X \le b) = F_X(b)-F_X(a)$
+					, por lo tanto:
+          $$\begin{align}
+					P(-1 < X \le 1.5) = & F_X(1.5)- F_X(-1)\\
+					=& 2/3 - 0 = 2/3
+					\end{align}$$</p>
+				</section>
+
+
+
+				<section data-transition="zoom">
+							<h2>Función de densidad (PDF)</h2>
+							<div class="fragment">
+										<div style="font-family: 'Pacifico';" class="def-block">
+										Definición
+										</div>
+										<div class="def-block-eq">
+										<p style="padding:0; margin:5px;">
+											Sea $F_X(x)$ la función de distribución de una variable aleatoria $X$, la función de densidad de $X$
+											denotada por $f_X(x)$ está definida por:
+											$$
+											f_X(x) = \frac{dF_X(x)}{dx},
+											$$
+											<br>
+											donde $x \in \mathbb{R}$.
+									</div>
+							</div>
+					</section>
+
+					<section data-transition="zoom">
+						<h2>Función de densidad (PDF)</h2>
+						<p style="text-align: left;">Propiedades de la PDF:</p>
+						<ul>
+							<li class="fragment">$f_X(x)\ge 0$</li>
+							<li class="fragment">$\int_{-\infty}^{+\infty}{f_X(x)}\, dx =1$</li>
+							<li class="fragment">$P(a < X \le b) = \int_{a}^b{f(x)\, dx}$</li>
+							<li class="fragment">$F_X(b) = \int_{-\infty}^b{f(u)\, du}$</li>
+						</ul>
+					</section>
+
+					<section data-transition="zoom", data-background-color="#edf6f9">
+						<h2>PDF: Ejemplos</h2>
+						<p style ="text-align: left; font-size:0.8em;">¿Cuáles funciones cumplen con la condición de representar una PDF?</p>
+            <img src="img/funciones.png" alt="pdfs examples" style="width:120%;">
+					</section>
+
+					<section data-transition="zoom", data-background-color="#edf6f9">
+						<h2>PDF: Ejemplos</h2>
+						<p style ="text-align: left; font-size:0.8em;">¿Cuáles funciones cumplen con la condición de representar una PDF?</p>
+            <img src="img/funciones2.png" alt="pdfs examples" style="width:80%;">
+					</section>
+
+					<section data-transition="zoom", data-background-color="#edf6f9">
+						<h2>PDF: Ejemplos</h2>
+						<p style ="text-align: left; font-size:0.8em;"> La función de densidad de una variable aleatoria está dada por:
+						$$
+						f_X(x) = \begin{cases}
+						x & 0 < x < 1\\
+						2-x & 1 \le x < 2\\
+						0 & \mbox{en otro caso}
+						\end{cases}
+					  $$
+					  Calcular $P(0.2 < X \le 0.8)$ </p>
+						<p class="fragment" style ="text-align: left; color:green; font-size:0.8em"><span style="color: blue;">Solución:</span> Recordemos que $P(a < X \le b) = \int_{a}^b{f_X(x)\, dx}$
+						, por lo tanto:
+	          $$\begin{align}
+						P(0.2 < X \le 0.8) = & \int_{0.2}^{0.8}{x\, dx} = \frac{x^2}{2} \biggr\rvert_{0.2}^{0.8}\\
+						=& \frac{1}{2}\times\left((0.8)^2-(0.2)^2\right) = 0.3.
+						\end{align}$$</p>
+					</section>
+
+					<section data-transition="zoom">
+								<h2>Función de masa de probabilidad (PMF)</h2>
+								<div class="fragment">
+											<div style="font-family: 'Pacifico';" class="def-block">
+											Definición
+											</div>
+											<div class="def-block-eq">
+											<p style="padding:0; margin:5px;">
+												Sea $X$ una variable aleatoria discreta con valores $x_1, x_2, ... x_n$, la función de masa de probabilidad de $X$ está dada por:
+												$$
+												p_X(x_i) = P(X=x_i) = F_X(x_i)-F_(x_{i-1}),
+												$$
+												<br>
+												donde $x_i < x_j$ si $i < j$.
+										</div>
+								</div>
+						</section>
+
+						<section data-transition="zoom">
+							<h2>Función de masa de probabilidad (PMF)</h2>
+							<p style="text-align: left;">Propiedades de la PMF:</p>
+							<ul>
+								<li class="fragment">$0 \le p_X(x_i)\le 1$</li>
+								<li class="fragment">$p_X(x)=0$ si $x\ne x_k \, (k=1,2,\ldots, n)$</li>
+								<li class="fragment">$\sum_k{p_X(x_k)}=1$</li>
+								<li class="fragment">$F_X(x) = \sum_{x_k \le x}{p_X(x_k)}$</li>
+							</ul>
+						</section>
+
+
+				<section>
+					<h2>¿Preguntas?</h2>
+				</section>
+
+
+
+
+
+
+
+
+
+
+			</div>
+
+		</div>
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+
+			// More info https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				transition: 'slide', // none/fade/slide/convex/concave/zoom
+				math: {
+					//	mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js',
+					config: 'TeX-AMS_HTML-full'
+				},
+
+				menu: {
+		// Specifies which side of the presentation the menu will
+		// be shown. Use 'left' or 'right'.
+		side: 'left',
+
+		// Add slide numbers to the titles in the slide list.
+		// Use 'true' or format string (same as reveal.js slide numbers)
+		numbers: false,
+
+		// Specifies which slide elements will be used for generating
+		// the slide titles in the menu. The default selects the first
+		// heading element found in the slide, but you can specify any
+		// valid css selector and the text from the first matching
+		// element will be used.
+		// Note: that a section data-menu-title attribute or an element
+		// with a menu-title class will take precedence over this option
+		titleSelector: 'h1, h2, h3, h4, h5, h6',
+
+		// If slides do not have a matching title, attempt to use the
+		// start of the text content as the title instead
+		useTextContentForMissingTitles: false,
+
+		// Hide slides from the menu that do not have a title.
+		// Set to 'true' to only list slides with titles.
+		hideMissingTitles: false,
+
+		// Adds markers to the slide titles to indicate the
+		// progress through the presentation. Set to 'false'
+		// to hide the markers.
+		markers: true,
+
+		// Specify custom panels to be included in the menu, by
+		// providing an array of objects with 'title', 'icon'
+		// properties, and either a 'src' or 'content' property.
+		custom: false,
+
+		// Specifies the themes that will be available in the themes
+		// menu panel. Set to 'true' to show the themes menu panel
+		// with the default themes list. Alternatively, provide an
+		// array to specify the themes to make available in the
+		// themes menu panel, for example...
+		// [
+		//     { name: 'Black', theme: 'css/theme/black.css' },
+		//     { name: 'White', theme: 'css/theme/white.css' },
+		//     { name: 'League', theme: 'css/theme/league.css' }
+		// ]
+		themes: false,
+
+		// Specifies the path to the default theme files. If your
+		// presentation uses a different path to the standard reveal
+		// layout then you need to provide this option, but only
+		// when 'themes' is set to 'true'. If you provide your own
+		// list of themes or 'themes' is set to 'false' the
+		// 'themesPath' option is ignored.
+		themesPath: 'css/theme/',
+
+		// Specifies if the transitions menu panel will be shown.
+		// Set to 'true' to show the transitions menu panel with
+		// the default transitions list. Alternatively, provide an
+		// array to specify the transitions to make available in
+		// the transitions panel, for example...
+		// ['None', 'Fade', 'Slide']
+		transitions: false,
+
+		// Adds a menu button to the slides to open the menu panel.
+		// Set to 'false' to hide the button.
+		openButton: true,
+
+		// If 'true' allows the slide number in the presentation to
+		// open the menu panel. The reveal.js slideNumber option must
+		// be displayed for this to take effect
+		openSlideNumber: false,
+
+		// If true allows the user to open and navigate the menu using
+		// the keyboard. Standard keyboard interaction with reveal
+		// will be disabled while the menu is open.
+		keyboard: true,
+
+		// Normally the menu will close on user actions such as
+		// selecting a menu item, or clicking the presentation area.
+		// If 'true', the sticky option will leave the menu open
+		// until it is explicitly closed, that is, using the close
+		// button or pressing the ESC or m key (when the keyboard
+		// interaction option is enabled).
+		sticky: false,
+
+		// If 'true' standard menu items will be automatically opened
+		// when navigating using the keyboard. Note: this only takes
+		// effect when both the 'keyboard' and 'sticky' options are enabled.
+		autoOpen: true,
+
+		// If 'true' the menu will not be created until it is explicitly
+		// requested by calling RevealMenu.init(). Note this will delay
+		// the creation of all menu panels, including custom panels, and
+		// the menu button.
+		delayInit: false,
+
+		// If 'true' the menu will be shown when the menu is initialised.
+		openOnInit: false,
+
+		// By default the menu will load it's own font-awesome library
+		// icons. If your presentation needs to load a different
+		// font-awesome library the 'loadIcons' option can be set to false
+		// and the menu will not attempt to load the font-awesome library.
+		loadIcons: true
+	},
+
+				// More info https://github.com/hakimel/reveal.js#dependencies
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/search/search.js', async: true },
+					{ src: 'plugin/zoom-js/zoom.js', async: true },
+					{ src: 'plugin/math/math.js', async: true },
+					{src: 'plugin/menu/menu.js'},
+					//{ src: 'plugin/katex/katex.js', async: true},
+					//{ src: '../math-katex/math-katex.js', async: true },
+					{ src: 'plugin/notes/notes.js', async: true }
+				]
+			});
+
+			// JulioCRDev   slideshow
+			var slideIndex = 1;
+showDivs(slideIndex);
+
+function plusDivs(n) {
+  showDivs(slideIndex += n);
+}
+
+function currentDiv(n) {
+  showDivs(slideIndex = n);
+}
+
+function showDivs(n) {
+  var i;
+  var x = document.getElementsByClassName("mySlides");
+  var dots = document.getElementsByClassName("demo");
+  if (n > x.length) {slideIndex = 1}
+  if (n < 1) {slideIndex = x.length}
+  for (i = 0; i < x.length; i++) {
+     x[i].style.display = "none";
+  }
+  for (i = 0; i < dots.length; i++) {
+     dots[i].className = dots[i].className.replace(" w3-white", "");
+  }
+  x[slideIndex-1].style.display = "block";
+  dots[slideIndex-1].className += " w3-white";
+}
+
+
+var myIndex = 0;
+carousel();
+
+function carousel() {
+    var i;
+    var x = document.getElementsByClassName("mySlides");
+    for (i = 0; i < x.length; i++) {
+       x[i].style.display = "none";
+    }
+    myIndex++;
+    if (myIndex > x.length) {myIndex = 1}
+    x[myIndex-1].style.display = "block";
+    setTimeout(carousel, 2000);
+}
+
+		</script>
+
+	</body>
+</html>
